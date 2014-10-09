@@ -26,10 +26,10 @@
                 <div class="row">
                     <div class="col-md-4 col-md-offset-3" >
                          <form id="Form1" method="post" enctype="multipart/form-data">
-                            <input type=file id=File1 name=File1 runat="server" style="width: 400px;border: none;" />
+                            <input type=file id=File name=File1 runat="server" style="width: 400px;border: none;" />
                             <br>
-                            <input type="image" src="Images/btn_cargar.png" alt="Submit" style="width: 400px;border: none;" />
-                        </form>
+                            <asp:ImageButton ID="Button1" ImageUrl="Images/btn_cargar.png" runat="server" OnClick="submit" style="width: 400px; border: none;" />
+                         </form>
                     </div>
                 </div>
             </div>
