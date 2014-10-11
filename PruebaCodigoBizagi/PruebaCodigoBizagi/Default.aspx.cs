@@ -28,7 +28,7 @@ namespace PruebaCodigoBizagi
 
                         EntidadDeValidacion entidad = new EntidadDeValidacion(SaveLocation);
                         string json = entidad.validarReglasBPMN(SaveLocation);
-
+                        System.Diagnostics.Debug.WriteLine(json);
                         //Response.Clear();
                         //Response.ContentType = "application/json; charset=utf-8";
                         //Response.Write(json);

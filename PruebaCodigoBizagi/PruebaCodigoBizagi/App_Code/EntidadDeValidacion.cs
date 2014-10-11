@@ -57,11 +57,17 @@ namespace PruebaCodigoBizagi.App_Code
                     {
                         if (activity.Attributes["Name"] == null)
                         {
-                            validaciones.Add(new Validacion("A throwing intermediate event should be labeled.", activity.Attributes["Id"].Value,"(nombre indefinido)", activity));
+                            Validacion v = new Validacion();
+                            v.idElemento = activity.Attributes["Id"].Value;
+                            v.nomElemento = "(nombre indefinido)";
+                            v.xpathElement = v.FindXPath(activity);
+                            v.mensaje = "El elemento" + v.nomElemento + "con id " + v.idElemento + " viola la siguiente validación: \n\n" + "A throwing intermediate event should be labeled.";
+                            validaciones.Add(v);
                         }
                     }
                 }
             }
+            System.Diagnostics.Debug.WriteLine("val1 = "+validaciones.Count);
             return validaciones;
         }
 
@@ -84,14 +90,21 @@ namespace PruebaCodigoBizagi.App_Code
             foreach (XmlNode transition in transitions)
             {
                 int index = activitiesIds.IndexOf(transition.Attributes["From"].Value);
-                activitiesIds.Remove(index);
-                activitiesNodes.Remove(index);
+                activitiesIds.RemoveAt(index);
+                activitiesNodes.RemoveAt(index);
             }
 
             for (int i = 0; i < activitiesIds.Count; i++)
             {
-                validaciones.Add(new Validacion("All flow objects other than end events and compensating activities must have an outgoing sequence flow, if the process level includes any start or end events.", ((string)activitiesIds[i]), ((XmlNode)activitiesNodes[i]).Attributes["Name"].Value, ((XmlNode)activitiesNodes[i])));
+                Validacion v = new Validacion();
+                v.idElemento = ((string)activitiesIds[i]);
+                v.nomElemento = ((XmlNode)activitiesNodes[i]).Attributes["Name"].Value;
+                v.xpathElement = v.FindXPath(((XmlNode)activitiesNodes[i]));
+                v.mensaje = "El elemento" + v.nomElemento + "con id " + v.idElemento + " viola la siguiente validación: \n\n" + "All flow objects other than end events and compensating activities must have an outgoing sequence flow, if the process level includes any start or end events.";
+                validaciones.Add(v);
             }
+
+            System.Diagnostics.Debug.WriteLine("val2 = " + validaciones.Count);
             return validaciones;
         }
 
@@ -108,7 +121,12 @@ namespace PruebaCodigoBizagi.App_Code
                 {
                     if (hashActividades.ContainsKey(activity.Attributes["Name"].Value))
                     {
-                        validaciones.Add(new Validacion("Two activities in the same process should not have the same name.", activity.Attributes["Id"].Value, activity.Attributes["Name"].Value, activity));
+                        Validacion v = new Validacion();
+                        v.idElemento = activity.Attributes["Id"].Value;
+                        v.nomElemento = activity.Attributes["Name"].Value;
+                        v.xpathElement = v.FindXPath(activity);
+                        v.mensaje = "El elemento" + v.nomElemento + "con id " + v.idElemento + " viola la siguiente validación: \n\n" + "Two activities in the same process should not have the same name.";
+                        validaciones.Add(v);
                     }
                     else
                     {
@@ -116,6 +134,7 @@ namespace PruebaCodigoBizagi.App_Code
                     }
                 }
             }
+            System.Diagnostics.Debug.WriteLine("val3 = " + validaciones.Count);
             return validaciones;
         }
 
@@ -143,18 +162,29 @@ namespace PruebaCodigoBizagi.App_Code
                         System.Diagnostics.Debug.WriteLine("throw msj");
                         if (!outgoingFlowsIds.Contains(activity.Attributes["Id"].Value))
                         {
-                            validaciones.Add(new Validacion("A throwing Message event should have outgoing message flow.", activity.Attributes["Id"].Value, activity.Attributes["Name"].Value, activity));
+                            Validacion v = new Validacion();
+                            v.idElemento = activity.Attributes["Id"].Value;
+                            v.nomElemento = activity.Attributes["Name"].Value;
+                            v.xpathElement = v.FindXPath(activity);
+                            v.mensaje = "El elemento" + v.nomElemento + "con id " + v.idElemento + " viola la siguiente validación: \n\n" + "A throwing Message event should have outgoing message flow.";
+                            validaciones.Add(v);
                         }
                     }
                     else
                     {
                         if (!incomingFlowsIds.Contains(activity.Attributes["Id"].Value))
                         {
-                            validaciones.Add(new Validacion("A catching Message event should have incoming message flow.", activity.Attributes["Id"].Value, activity.Attributes["Name"].Value, activity));
+                            Validacion v = new Validacion();
+                            v.idElemento = activity.Attributes["Id"].Value;
+                            v.nomElemento = activity.Attributes["Name"].Value;
+                            v.xpathElement = v.FindXPath(activity);
+                            v.mensaje = "El elemento" + v.nomElemento + "con id " + v.idElemento + " viola la siguiente validación: \n\n" + "A catching Message event should have incoming message flow.";
+                            validaciones.Add(v);
                         }
                     }
                 }
             }
+            System.Diagnostics.Debug.WriteLine("val4 = " + validaciones.Count);
             return validaciones;
         }
     }

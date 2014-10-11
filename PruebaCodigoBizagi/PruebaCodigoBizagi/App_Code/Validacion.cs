@@ -9,20 +9,16 @@ namespace PruebaCodigoBizagi.App_Code
 {
     public class Validacion
     {
-        private string mensaje;
-        private string idElemento;
-        private string nomElemento;
-        private string xpathElemento;
+        public string mensaje { get; set; }
+        public string idElemento { get; set; }
+        public string nomElemento { get; set; }
+        public string xpathElement { get; set; }
 
-        public Validacion(string mensajeError, string idElemento, string nomElemento, XmlNode nodo)
+        public Validacion()
         {
-            this.idElemento = idElemento;
-            this.nomElemento = nomElemento;
-            this.xpathElemento = FindXPath(nodo);
-            this.mensaje = "El elemento" + nomElemento + "con id " + idElemento + " viola la siguiente validación: \n\n" + mensajeError;
         }
 
-        private string FindXPath(XmlNode node)
+        public string FindXPath(XmlNode node)
         {
             StringBuilder builder = new StringBuilder();
             while (node != null)
