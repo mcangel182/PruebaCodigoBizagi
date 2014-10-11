@@ -301,6 +301,14 @@ ol.round {
             background: url("../Images/orderedList9.png") no-repeat;
         }
 
+        ol.round li.warning {
+            background: url("../Images/warning.png") no-repeat;
+        }
+
+        ol.round li.check {
+            background: url("../Images/check.png") no-repeat;
+        }
+
 /* content */
 article {
     float: left;
@@ -671,7 +679,8 @@ tr.pager td {
             ol.round li.six,
             ol.round li.seven,
             ol.round li.eight,
-            ol.round li.nine {
+            ol.round li.nine,
+            ol.round.li.warning {
                 background: none;
             }
 

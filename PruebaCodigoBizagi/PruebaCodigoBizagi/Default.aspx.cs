@@ -30,13 +30,12 @@ namespace PruebaCodigoBizagi
                         File.PostedFile.SaveAs(SaveLocation);
 
                         EntidadDeValidacion entidad = new EntidadDeValidacion(SaveLocation);
-                        string json = entidad.validarReglasBPMN(SaveLocation);
+                        string json = entidad.validarReglasBPMN();
                         System.Diagnostics.Debug.WriteLine(json);
-                        Response.Clear();
-                        Response.ContentType = "application/json; charset=utf-8";
-                        Response.Write(json);
-                        //Response.End();
-
+                        //Response.Clear();
+                        //Response.ContentType = "application/json; charset=utf-8";
+                        //Response.Write(json);
+                        Session["fromSender"] = json;
                         Response.Redirect("About.aspx", false);
                         HttpContext.Current.ApplicationInstance.CompleteRequest();
                         //Response.Write("El archivo se ha cargado.");

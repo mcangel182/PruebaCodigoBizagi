@@ -13,6 +13,7 @@ namespace PruebaCodigoBizagi.App_Code
         public string archivo;
         public XmlDocument doc;
         public XmlNamespaceManager nsmgr;
+        public string diagrama;
 
         public EntidadDeValidacion(string archivo)
         {
@@ -23,7 +24,7 @@ namespace PruebaCodigoBizagi.App_Code
             nsmgr.AddNamespace("bpm", "http://www.wfmc.org/2008/XPDL2.1");
         }
 
-        public string validarReglasBPMN(String archivo)
+        public string validarReglasBPMN()
         {
             XmlNodeList activities = doc.SelectNodes("//bpm:Activity", nsmgr);
             XmlNodeList transitions = doc.SelectNodes("//bpm:Transition", nsmgr);
@@ -31,14 +32,21 @@ namespace PruebaCodigoBizagi.App_Code
             XmlNodeList messageFlows = doc.SelectNodes("//bpm:MessageFlow", nsmgr);
 
             ArrayList validaciones = new ArrayList();
+            diagrama = archivo;
             validaciones.AddRange(validarBPMN0105(activities, nsmgr));
             validaciones.AddRange(validarBPMN0102(activities, transitions, nsmgr));
             validaciones.AddRange(validarStyle0104(processes, nsmgr));
             validaciones.AddRange(validarStyle0122Y0123(activities, messageFlows, nsmgr));
-
-            JavaScriptSerializer jsonSerialiser = new JavaScriptSerializer();
-            string json = jsonSerialiser.Serialize(validaciones);
-
+            string json;
+            if (validaciones.Count == 0)
+            {
+                json = "PASO_VALIDACIONES" + diagrama;
+            }
+            else
+            {
+                JavaScriptSerializer jsonSerialiser = new JavaScriptSerializer();
+                json = jsonSerialiser.Serialize(validaciones);
+            }
             return json;
         }
 
@@ -55,13 +63,14 @@ namespace PruebaCodigoBizagi.App_Code
                     XmlAttribute throwEvent = triggerResultMessageNode.Attributes["CatchThrow"];
                     if (throwEvent != null && throwEvent.Value == "THROW")
                     {
-                        if (activity.Attributes["Name"] == null)
+                        if (activity.Attributes["Name"].Value == "")
                         {
                             Validacion v = new Validacion();
                             v.idElemento = activity.Attributes["Id"].Value;
-                            v.nomElemento = "(nombre indefinido)";
+                            v.nomElemento = activity.Attributes["Name"].Value;
                             v.xpathElement = v.FindXPath(activity);
-                            v.mensaje = "El elemento" + v.nomElemento + "con id " + v.idElemento + " viola la siguiente validación: \n\n" + "A throwing intermediate event should be labeled.";
+                            v.numeroDiagrama = diagrama;
+                            v.mensaje = "<h5>El elemento " + v.nomElemento + " con id " + v.idElemento + " viola la siguiente validación: </h5>" + "A throwing intermediate event should be labeled.";
                             validaciones.Add(v);
                         }
                     }
@@ -100,7 +109,8 @@ namespace PruebaCodigoBizagi.App_Code
                 v.idElemento = ((string)activitiesIds[i]);
                 v.nomElemento = ((XmlNode)activitiesNodes[i]).Attributes["Name"].Value;
                 v.xpathElement = v.FindXPath(((XmlNode)activitiesNodes[i]));
-                v.mensaje = "El elemento" + v.nomElemento + "con id " + v.idElemento + " viola la siguiente validación: \n\n" + "All flow objects other than end events and compensating activities must have an outgoing sequence flow, if the process level includes any start or end events.";
+                v.numeroDiagrama = diagrama;
+                v.mensaje = "<h5>El elemento " + v.nomElemento + " con id " + v.idElemento + " viola la siguiente validación: </h5>" + "All flow objects other than end events and compensating activities must have an outgoing sequence flow, if the process level includes any start or end events.";
                 validaciones.Add(v);
             }
 
@@ -125,10 +135,11 @@ namespace PruebaCodigoBizagi.App_Code
                         v.idElemento = activity.Attributes["Id"].Value;
                         v.nomElemento = activity.Attributes["Name"].Value;
                         v.xpathElement = v.FindXPath(activity);
-                        v.mensaje = "El elemento" + v.nomElemento + "con id " + v.idElemento + " viola la siguiente validación: \n\n" + "Two activities in the same process should not have the same name.";
+                        v.numeroDiagrama = diagrama;
+                        v.mensaje = "<h5>El elemento " + v.nomElemento + " con id " + v.idElemento + " viola la siguiente validación: </h5>" + "Two activities in the same process should not have the same name.";
                         validaciones.Add(v);
                     }
-                    else
+                    else if (activity.Attributes["Name"].Value != "")
                     {
                         hashActividades.Add(activity.Attributes["Name"].Value, activity);
                     }
@@ -166,7 +177,8 @@ namespace PruebaCodigoBizagi.App_Code
                             v.idElemento = activity.Attributes["Id"].Value;
                             v.nomElemento = activity.Attributes["Name"].Value;
                             v.xpathElement = v.FindXPath(activity);
-                            v.mensaje = "El elemento" + v.nomElemento + "con id " + v.idElemento + " viola la siguiente validación: \n\n" + "A throwing Message event should have outgoing message flow.";
+                            v.numeroDiagrama = diagrama;
+                            v.mensaje = "<h5>El elemento " + v.nomElemento + " con id " + v.idElemento + " viola la siguiente validación: </h5>" + "A throwing Message event should have outgoing message flow.";
                             validaciones.Add(v);
                         }
                     }
@@ -178,7 +190,8 @@ namespace PruebaCodigoBizagi.App_Code
                             v.idElemento = activity.Attributes["Id"].Value;
                             v.nomElemento = activity.Attributes["Name"].Value;
                             v.xpathElement = v.FindXPath(activity);
-                            v.mensaje = "El elemento" + v.nomElemento + "con id " + v.idElemento + " viola la siguiente validación: \n\n" + "A catching Message event should have incoming message flow.";
+                            v.numeroDiagrama = diagrama;
+                            v.mensaje = "<h5>El elemento " + v.nomElemento + " con id " + v.idElemento + " viola la siguiente validación: </h5>" + "A catching Message event should have incoming message flow.";
                             validaciones.Add(v);
                         }
                     }

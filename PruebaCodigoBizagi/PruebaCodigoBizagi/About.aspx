@@ -1,34 +1,19 @@
 ﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="PruebaCodigoBizagi.About" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <hgroup class="title">
-        <h1><%: Title %>.</h1>
-        <h2>Your app description page.</h2>
-    </hgroup>
-
-    <article>
-        <p>        
-            Use this area to provide additional information.
-        </p>
-
-        <p>        
-            Use this area to provide additional information.
-        </p>
-
-        <p>        
-            Use this area to provide additional information.
-        </p>
-    </article>
-
-    <aside>
-        <h3>Aside Title</h3>
-        <p>        
-            Use this area to provide additional information.
-        </p>
-        <ul>
-            <li><a runat="server" href="~/">Home</a></li>
-            <li><a runat="server" href="~/About.aspx">About</a></li>
-            <li><a runat="server" href="~/Contact.aspx">Contact</a></li>
-        </ul>
-    </aside>
+    <div style="margin-top:35px;">
+        <hgroup class="title">
+            <h2>Validación de diagrama de procesos.</h2>
+        </hgroup>
+        <asp:Literal runat="server" id="imagenDiagrama" EnableViewState="false" />
+        <h3><asp:Literal runat="server" id="titulo" EnableViewState="false" /></h3>
+        <ol class="round">
+            <asp:Literal runat="server" id="listaValidaciones" EnableViewState="false" />
+        </ol>
+        <br>
+        <a href="Default.aspx">
+            <img src="Images/btn_volver.png" style="width: 180px; border: none;" />
+        </a>
+        <br><br>
+    </div>
 </asp:Content>

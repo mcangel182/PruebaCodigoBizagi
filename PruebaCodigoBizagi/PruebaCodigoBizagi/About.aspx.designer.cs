@@ -7,11 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PruebaCodigoBizagi
-{
-
-    public partial class About
-    {
-
+namespace PruebaCodigoBizagi {
+    
+    
+    public partial class About {
+        
+        /// <summary>
+        /// imagenDiagrama control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal imagenDiagrama;
+        
+        /// <summary>
+        /// titulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal titulo;
+        
+        /// <summary>
+        /// listaValidaciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal listaValidaciones;
     }
 }

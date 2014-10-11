@@ -25,6 +25,6 @@ C:\Users\Imac\Documents\Visual Studio 2012\Projects\PruebaCodigoBizagi\PruebaCod
 C:\Users\Imac\Documents\Visual Studio 2012\Projects\PruebaCodigoBizagi\PruebaCodigoBizagi\PruebaCodigoBizagi\bin\DotNetOpenAuth.OpenId.xml
 C:\Users\Imac\Documents\Visual Studio 2012\Projects\PruebaCodigoBizagi\PruebaCodigoBizagi\PruebaCodigoBizagi\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 C:\Users\Imac\Documents\Visual Studio 2012\Projects\PruebaCodigoBizagi\PruebaCodigoBizagi\PruebaCodigoBizagi\bin\DotNetOpenAuth.AspNet.xml
-C:\Users\Imac\Documents\Visual Studio 2012\Projects\PruebaCodigoBizagi\PruebaCodigoBizagi\PruebaCodigoBizagi\obj\Debug\PruebaCodigoBizagi.csprojResolveAssemblyReference.cache
 C:\Users\Imac\Documents\Visual Studio 2012\Projects\PruebaCodigoBizagi\PruebaCodigoBizagi\PruebaCodigoBizagi\obj\Debug\PruebaCodigoBizagi.dll
 C:\Users\Imac\Documents\Visual Studio 2012\Projects\PruebaCodigoBizagi\PruebaCodigoBizagi\PruebaCodigoBizagi\obj\Debug\PruebaCodigoBizagi.pdb
+C:\Users\Imac\Documents\Visual Studio 2012\Projects\PruebaCodigoBizagi\PruebaCodigoBizagi\PruebaCodigoBizagi\obj\Debug\PruebaCodigoBizagi.csprojResolveAssemblyReference.cache
