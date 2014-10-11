@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Web.UI;
+using System.Xml;
+using System.Web;
+using System.Collections;
+using PruebaCodigoBizagi.App_Code;
 
 namespace PruebaCodigoBizagi
 {
@@ -12,7 +16,8 @@ namespace PruebaCodigoBizagi
 
         protected void submit(object sender, EventArgs e)
         {
-            if(System.IO.Path.GetFileName(File.PostedFile.FileName).EndsWith(".xpdl")){
+            if (System.IO.Path.GetFileName(File.PostedFile.FileName).EndsWith(".xpdl"))
+            {
                 if ((File.PostedFile != null) && (File.PostedFile.ContentLength > 0))
                 {
                     string fn = System.IO.Path.GetFileName(File.PostedFile.FileName);
@@ -20,7 +25,18 @@ namespace PruebaCodigoBizagi
                     try
                     {
                         File.PostedFile.SaveAs(SaveLocation);
-                        Response.Write("El archivo se ha cargado.");
+
+                        EntidadDeValidacion entidad = new EntidadDeValidacion(SaveLocation);
+                        string json = entidad.validarReglasBPMN(SaveLocation);
+
+                        //Response.Clear();
+                        //Response.ContentType = "application/json; charset=utf-8";
+                        //Response.Write(json);
+                        //Response.End();
+
+                        Response.Redirect("About.aspx", false);
+                        HttpContext.Current.ApplicationInstance.CompleteRequest();
+                        //Response.Write("El archivo se ha cargado.");
                     }
                     catch (Exception ex)
                     {
@@ -35,7 +51,9 @@ namespace PruebaCodigoBizagi
                     Response.Write("Seleccione un archivo que cargar.");
                 }
             }
-            else{
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Archivo no es xpdl");
                 Response.Write("Seleccione un archivo que cargar.");
             }
         }
