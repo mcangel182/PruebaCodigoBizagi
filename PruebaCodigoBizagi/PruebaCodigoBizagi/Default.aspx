@@ -25,7 +25,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-3" >
-                         <form id="Form1" method="post" enctype="multipart/form-data">
+                         <form id="Form1" method="post" enctype="multipart/form-data" >
                             <input type=file id=File name=File1 runat="server" style="width: 400px;border: none;" />
                             <br>
                             <asp:ImageButton ID="Button1" ImageUrl="Images/btn_cargar.png" runat="server" OnClick="submit" style="width: 400px; border: none;" />

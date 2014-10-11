@@ -11,7 +11,10 @@ namespace PruebaCodigoBizagi
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (IsPostBack)
+            {
+                System.Diagnostics.Debug.WriteLine("wujuuu post back");
+            }
         }
 
         protected void submit(object sender, EventArgs e)
@@ -29,9 +32,9 @@ namespace PruebaCodigoBizagi
                         EntidadDeValidacion entidad = new EntidadDeValidacion(SaveLocation);
                         string json = entidad.validarReglasBPMN(SaveLocation);
                         System.Diagnostics.Debug.WriteLine(json);
-                        //Response.Clear();
-                        //Response.ContentType = "application/json; charset=utf-8";
-                        //Response.Write(json);
+                        Response.Clear();
+                        Response.ContentType = "application/json; charset=utf-8";
+                        Response.Write(json);
                         //Response.End();
 
                         Response.Redirect("About.aspx", false);
