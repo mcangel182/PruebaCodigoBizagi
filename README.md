@@ -2,7 +2,7 @@ PruebaCodigoBizagi
 ==================
 
 Usted es contratado como ingeniero de desarrollo para Bizagi Process Modeler, la herramientavde modelamiento de procesos de Bizagi. Revisando en los foros de sugerencias de los usuarios, usted encuentra que los usuarios solicitan muy frecuentemente que Bizagi Process Modeler ofrezca una característica de validación de los diagramas de procesos. Usted, con una actitud proactiva, decide complacer a los leales usuarios de Bizagi Process Modeler y diseñar e implementar para ellos esta deseada característica. 
-Usted inicia una investigación para determinar qué clase de validaciones necesitarían los usuarios de Bizagi Process Modeler y encuentra este documento: The Rules of BPMN, que contiene un listado de validaciones BPMN que debería cumplir un diagrama de procesos.
+Usted inicia una investigación para determinar qué clase de validaciones necesitarían los usuarios de Bizagi Process Modeler y encuentra este documento: The Rules of BPMN, que contiene un listado de validaciones BPMN que debería cumplir un diagrama de procesos. La aplicación diseñada se ecargará de validar las siguientes reglas Style 0115, BPMN 0102, Style 0104, Style 0122 y Style 0123.
 
 ##Objetivos
 
