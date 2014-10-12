@@ -15,21 +15,25 @@ namespace PruebaCodigoBizagi
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string session = Session["fromSender"].ToString(); 
-            if (!string.IsNullOrEmpty(session))
+            //string response = Session["fromSender"].ToString(); 
+
+            HttpContext _context = HttpContext.Current;
+            string response = _context.Items["json"].ToString();
+            
+            if (!string.IsNullOrEmpty(response))
             {
                 string list = "";
-                if (session.Contains("PASO_VALIDACIONES"))
+                if (response.Contains("PASO_VALIDACIONES"))
                 {
                     titulo.Text += "No se encontraron errores en el diagrama:";
                     list += "<li class=\"check\"><h5>Su diagrama pasó todas las validaciones</h5><br></li>";
-                    if(session.Contains("Sample.xpdl"))
+                    if(response.Contains("Sample.xpdl"))
                         imagenDiagrama.Text = "<img src=\"Images/0.png\" />";
                 }
                 else
                 {
                     JavaScriptSerializer jsonSerialiser = new JavaScriptSerializer();
-                    List<Validacion> validaciones = jsonSerialiser.Deserialize<List<Validacion>>(Session["fromSender"].ToString());
+                    List<Validacion> validaciones = jsonSerialiser.Deserialize<List<Validacion>>(response);
                
                     titulo.Text += "Se encontraron los siguientes errores en el diagrama:";
                     foreach (Validacion validacion in validaciones)

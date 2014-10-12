@@ -4,6 +4,7 @@ using System.Xml;
 using System.Web;
 using System.Collections;
 using PruebaCodigoBizagi.App_Code;
+using System.Threading;
 
 namespace PruebaCodigoBizagi
 {
@@ -11,10 +12,7 @@ namespace PruebaCodigoBizagi
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack)
-            {
-                System.Diagnostics.Debug.WriteLine("wujuuu post back");
-            }
+
         }
 
         protected void submit(object sender, EventArgs e)
@@ -31,21 +29,22 @@ namespace PruebaCodigoBizagi
 
                         EntidadDeValidacion entidad = new EntidadDeValidacion(SaveLocation);
                         string json = entidad.validarReglasBPMN();
-                        System.Diagnostics.Debug.WriteLine(json);
                         //Response.Clear();
                         //Response.ContentType = "application/json; charset=utf-8";
                         //Response.Write(json);
-                        Session["fromSender"] = json;
-                        Response.Redirect("About.aspx", false);
-                        HttpContext.Current.ApplicationInstance.CompleteRequest();
-                        //Response.Write("El archivo se ha cargado.");
+
+                        HttpContext _context = HttpContext.Current;
+                        _context.Items.Add("json", json);
+                        Server.Transfer("About.aspx");
+                        //HttpContext.Current.ApplicationInstance.CompleteRequest();
+
+                        //Session["fromSender"] = json;
+                        //Response.Redirect("About.aspx", false);
+
                     }
-                    catch (Exception ex)
+                    catch (ThreadAbortException ex)
                     {
-                        Response.Write("Error : " + ex.Message);
-                        //Nota: Exception.Message devuelve un mensaje detallado que describe la excepción actual. 
-                        //Por motivos de seguridad, no se recomienda devolver Exception.Message a los usuarios finales de 
-                        //entornos de producción. Sería más aconsejable poner un mensaje de error genérico. 
+                        
                     }
                 }
                 else
