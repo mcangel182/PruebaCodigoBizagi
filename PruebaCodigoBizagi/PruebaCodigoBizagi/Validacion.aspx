@@ -1,4 +1,4 @@
-﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Validacion.aspx.cs" Inherits="PruebaCodigoBizagi.About" %>
+﻿<%@ Page Title="Validacion" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Validacion.aspx.cs" Inherits="PruebaCodigoBizagi.About" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div style="margin-top:35px;">

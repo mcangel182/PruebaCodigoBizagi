@@ -13,7 +13,7 @@ namespace PruebaCodigoBizagi.App_Code
         public string idElemento { get; set; }
         public string nomElemento { get; set; }
         public string xpathElement { get; set; }
-        public string numeroDiagrama { get; set; }
+        public string rutaDiagrama { get; set; }
 
         public Validacion()
         {

@@ -69,7 +69,7 @@ namespace PruebaCodigoBizagi.App_Code
                             v.idElemento = activity.Attributes["Id"].Value;
                             v.nomElemento = activity.Attributes["Name"].Value;
                             v.xpathElement = v.FindXPath(activity);
-                            v.numeroDiagrama = diagrama;
+                            v.rutaDiagrama = diagrama;
                             v.mensaje = "<h5>El elemento " + v.nomElemento + " con id " + v.idElemento + " viola la siguiente validación: </h5>" + "A throwing intermediate event should be labeled.";
                             validaciones.Add(v);
                         }
@@ -99,8 +99,11 @@ namespace PruebaCodigoBizagi.App_Code
             foreach (XmlNode transition in transitions)
             {
                 int index = activitiesIds.IndexOf(transition.Attributes["From"].Value);
-                activitiesIds.RemoveAt(index);
-                activitiesNodes.RemoveAt(index);
+                if (index != -1)
+                {
+                    activitiesIds.RemoveAt(index);
+                    activitiesNodes.RemoveAt(index);
+                }
             }
 
             for (int i = 0; i < activitiesIds.Count; i++)
@@ -109,7 +112,7 @@ namespace PruebaCodigoBizagi.App_Code
                 v.idElemento = ((string)activitiesIds[i]);
                 v.nomElemento = ((XmlNode)activitiesNodes[i]).Attributes["Name"].Value;
                 v.xpathElement = v.FindXPath(((XmlNode)activitiesNodes[i]));
-                v.numeroDiagrama = diagrama;
+                v.rutaDiagrama = diagrama;
                 v.mensaje = "<h5>El elemento " + v.nomElemento + " con id " + v.idElemento + " viola la siguiente validación: </h5>" + "All flow objects other than end events and compensating activities must have an outgoing sequence flow, if the process level includes any start or end events.";
                 validaciones.Add(v);
             }
@@ -135,7 +138,7 @@ namespace PruebaCodigoBizagi.App_Code
                         v.idElemento = activity.Attributes["Id"].Value;
                         v.nomElemento = activity.Attributes["Name"].Value;
                         v.xpathElement = v.FindXPath(activity);
-                        v.numeroDiagrama = diagrama;
+                        v.rutaDiagrama = diagrama;
                         v.mensaje = "<h5>El elemento " + v.nomElemento + " con id " + v.idElemento + " viola la siguiente validación: </h5>" + "Two activities in the same process should not have the same name.";
                         validaciones.Add(v);
                     }
@@ -176,7 +179,7 @@ namespace PruebaCodigoBizagi.App_Code
                             v.idElemento = activity.Attributes["Id"].Value;
                             v.nomElemento = activity.Attributes["Name"].Value;
                             v.xpathElement = v.FindXPath(activity);
-                            v.numeroDiagrama = diagrama;
+                            v.rutaDiagrama = diagrama;
                             v.mensaje = "<h5>El elemento " + v.nomElemento + " con id " + v.idElemento + " viola la siguiente validación: </h5>" + "A throwing Message event should have outgoing message flow.";
                             validaciones.Add(v);
                         }
@@ -189,7 +192,7 @@ namespace PruebaCodigoBizagi.App_Code
                             v.idElemento = activity.Attributes["Id"].Value;
                             v.nomElemento = activity.Attributes["Name"].Value;
                             v.xpathElement = v.FindXPath(activity);
-                            v.numeroDiagrama = diagrama;
+                            v.rutaDiagrama = diagrama;
                             v.mensaje = "<h5>El elemento " + v.nomElemento + " con id " + v.idElemento + " viola la siguiente validación: </h5>" + "A catching Message event should have incoming message flow.";
                             validaciones.Add(v);
                         }

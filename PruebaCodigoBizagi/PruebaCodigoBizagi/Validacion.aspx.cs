@@ -41,19 +41,19 @@ namespace PruebaCodigoBizagi
                         list += "<li class=\"warning\">" + validacion.mensaje + "</li>";
                     }
 
-                    if (validaciones[0].numeroDiagrama.Contains("Sample 1.xpdl"))
+                    if (validaciones[0].rutaDiagrama.Contains("Sample 1.xpdl"))
                     {
                         imagenDiagrama.Text = "<img src=\"Images/1.png\" />";
                     }
-                    else if (validaciones[0].numeroDiagrama.Contains("Sample 2.xpdl"))
+                    else if (validaciones[0].rutaDiagrama.Contains("Sample 2.xpdl"))
                     {
                         imagenDiagrama.Text = "<img src=\"Images/2.png\" />";
                     }
-                    else if (validaciones[0].numeroDiagrama.Contains("Sample 3.xpdl"))
+                    else if (validaciones[0].rutaDiagrama.Contains("Sample 3.xpdl"))
                     {
                         imagenDiagrama.Text = "<img src=\"Images/3.png\" />";
                     }
-                    else if (validaciones[0].numeroDiagrama.Contains("Sample 4.xpdl"))
+                    else if (validaciones[0].rutaDiagrama.Contains("Sample 4.xpdl"))
                     {
                         imagenDiagrama.Text = "<img src=\"Images/4.png\" />";
                     }
