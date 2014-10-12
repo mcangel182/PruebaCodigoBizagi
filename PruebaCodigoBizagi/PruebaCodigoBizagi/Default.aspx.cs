@@ -17,12 +17,12 @@ namespace PruebaCodigoBizagi
 
         protected void submit(object sender, EventArgs e)
         {
-            if (System.IO.Path.GetFileName(File.PostedFile.FileName).EndsWith(".xpdl"))
+            string path = System.IO.Path.GetFileName(File.PostedFile.FileName);
+            if ((File.PostedFile != null) && (File.PostedFile.ContentLength > 0))
             {
-                if ((File.PostedFile != null) && (File.PostedFile.ContentLength > 0))
+                if (path.EndsWith(".xpdl"))
                 {
-                    string fn = System.IO.Path.GetFileName(File.PostedFile.FileName);
-                    string SaveLocation = Server.MapPath("Data") + "\\" + fn;
+                    string SaveLocation = Server.MapPath("Data") + "\\" + path;
                     try
                     {
                         File.PostedFile.SaveAs(SaveLocation);
@@ -37,22 +37,20 @@ namespace PruebaCodigoBizagi
                         //Session["fromSender"] = json;
                         //Response.Redirect("About.aspx", false);
                         //HttpContext.Current.ApplicationInstance.CompleteRequest();
-
                     }
                     catch (ThreadAbortException ex)
                     {
-                        
+
                     }
                 }
                 else
                 {
-                    Response.Write("Seleccione un archivo que cargar.");
+                    error.Text += "La extensión del archivo debe ser .xpdl.";
                 }
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("Archivo no es xpdl");
-                Response.Write("Seleccione un archivo que cargar.");
+                error.Text += "Seleccione un archivo que cargar.";
             }
         }
     }

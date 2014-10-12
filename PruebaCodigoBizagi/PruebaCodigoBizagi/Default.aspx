@@ -22,7 +22,7 @@
                         <img src="Images/paso1.png" style="height:140px" />
                     </div>
                     <div class="col-md-4">
-                        <img src="Images/paso2.png" style="height:140px"/>
+                        <img src="Images/paso2.png" style="height:140px; margin-left:25px;"/>
                     </div>
                     <div class="col-md-4">
                         <img src="Images/paso3.png" style="height:140px"/>
@@ -45,9 +45,13 @@
             <div class="col-md-4 col-md-offset-3" >
                 <form id="Form1" method="post" enctype="multipart/form-data" >
                     <input type=file id=File name=File1 runat="server" style="width: 400px;border: none;" />
+                    <div style="color:red">
+                        <asp:Literal runat="server" id="error" EnableViewState="false" />
+                    </div>
                     <br>
                     <asp:ImageButton ID="Button1" ImageUrl="Images/btn_cargar.png" runat="server" OnClick="submit" style="width: 400px; border: none;" />
                 </form>
+                
                 <br><br><br><br>
             </div>
         </div>
