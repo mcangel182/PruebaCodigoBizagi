@@ -170,7 +170,6 @@ namespace PruebaCodigoBizagi.App_Code
                     XmlAttribute throwEvent = triggerResultMessageNode.Attributes["CatchThrow"];
                     if (throwEvent != null && throwEvent.Value == "THROW")
                     {
-                        System.Diagnostics.Debug.WriteLine("throw msj");
                         if (!outgoingFlowsIds.Contains(activity.Attributes["Id"].Value))
                         {
                             Validacion v = new Validacion();
