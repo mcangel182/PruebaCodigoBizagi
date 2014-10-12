@@ -14,3 +14,11 @@ Usted empieza a usar Bizagi Process Modeler, y nota que la experiencia de usuari
 
 ###3. Evolución a futuro
 Como usted es un ingeniero que siempre piensa en los cambios que pueden venir más adelante, sele ocurre que en el futuro, sería interesante que en el website bizagi.com estuviera disponible este mismo servicio de validación de diagramas de procesos, de tal forma que usuarios que usen otras herramientas de modelamiento de proceso pueden usar este servicio y así atraerlos a usar Bizagi Process Modeler.
+
+##Instrucciones
+1. Abrir el archivo PruebaCodigoBizagi.sln en Visual Studio 2012
+2. En el Solution Explorer haga click sobre la raiz del proyecto PruebaCodigoBizagi
+3. Haciendo click en el boton de correr, corra la aplicación en Google Chrome
+4. Seleccione un archivo .xpdl
+5. Haga click en validar diagrama. Se mostrará una pantalla con la validación del diagrama seleccionado
+6. Para validar otro diagrama haga click en volver y repita los pasos 4 y 5. 
